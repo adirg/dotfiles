@@ -1,0 +1,29 @@
+# by running:
+#   git config --global user.email git_user_email
+#   git config --global user.name ""adir""
+
+# git config --global color.ui true
+# git config --global rerere.enabled true
+
+# the alias is defined by following:
+#   http://stackoverflow.com/questions/1057564/pretty-git-branch-graphs
+
+# 
+# git config --global alias.gl '!git lg1'
+# git config --global alias.last 'log 1 - HEAD'
+
+[user]
+        email = 'adir@stratoscale.com'
+        name = 'Adir Gabai'
+[color]
+        ui = true
+[rerere]
+        enabled = true
+[alias]
+	lg1 = log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all
+	lg2 = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)' --all
+	lg = !git lg1
+	last = log 1 - HEAD
+
+[core]
+	editor = vim
