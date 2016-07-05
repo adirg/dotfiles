@@ -1,8 +1,13 @@
-execute pathogen#infect()
-execute pathogen#helptags()
-set path+=/home/adir/work/**
+" define plugins
+call plug#begin('~/.vim/plugged')
+Plug 'vim-airline/vim-airline'
+Plug 'davidhalter/jedi-vim'
+Plug 'kien/ctrlp.vim'
+Plug 'morhetz/gruvbox'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-surround'
+call plug#end()
 
-" ui
 set number          " show line numbers
 set laststatus=2    " always show status line
 set background=dark
