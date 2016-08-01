@@ -1,6 +1,16 @@
-execute pathogen#infect()
-execute pathogen#helptags()
-set path+=/home/adir/work/**
+set rtp+=~/.vim/bundle/Vundle
+
+call vundle#begin()
+Plugin 'vim-airline/vim-airline'
+Plugin 'davidhalter/jedi-vim'
+Plugin 'fatih/vim-go'
+Plugin 'kien/ctrlp.vim'
+Plugin 'mileszs/ack.vim'
+Plugin 'morhetz/gruvbox'
+Plugin 'scrooloose/nerdtree'
+Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-surround'
+call vundle#end()
 
 " ui
 set number          " show line numbers
