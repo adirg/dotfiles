@@ -13,7 +13,7 @@
 # git config --global alias.last 'log 1 - HEAD'
 
 [user]
-        email = 'adir@stratoscale.com'
+	email = adir@stratoscale.com
         name = 'Adir Gabai'
 [color]
         ui = true

@@ -1,11 +1,17 @@
 " define plugins
 call plug#begin('~/.vim/plugged')
-Plug 'vim-airline/vim-airline'
-Plug 'davidhalter/jedi-vim'
+Plug 'Valloric/YouCompleteMe'
+"Plug 'davidhalter/jedi-vim'
+Plug 'ekalinin/Dockerfile.vim'
+Plug 'fatih/vim-go'
 Plug 'kien/ctrlp.vim'
+Plug 'mileszs/ack.vim'
 Plug 'morhetz/gruvbox'
+Plug 'neomake/neomake'
+Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
+Plug 'vim-airline/vim-airline'
 call plug#end()
 
 set number          " show line numbers
@@ -40,11 +46,5 @@ set noswapfile
 set wildmenu                    " enhanced command-line completion
 set wildignore=*.o,*~,*.pyc     " ignore compiled files
 
-" plugins
-" minibufferexplorer
-map <leader>mbt :MBEToggle<cr>
-map <leader>mbf :MBEFocus<cr>
-
-" syntastic
-let g:syntastic_python_pep8_args = "--max-line-size=180" 
-let g:syntastic_python_flake8_args = "--max-line-size=180" 
+" YouCompleteMe
+nnoremap <leader>jd :YcmCompleter GoTo<CR>

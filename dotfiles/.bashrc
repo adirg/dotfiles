@@ -11,7 +11,10 @@ fi
 # User specific aliases and functions
 export RACK_SITE=bezeq
 
-source ~/.git-prompt.sh
+export GOPATH=$HOME/code/gowork
+export PATH=$GOPATH/bin:/usr/local/go/bin:$PATH
+
+source ~/utils/git-prompt.sh
 PS1='\[\e[32m\]\u@\h \[\e[34m\][\W] $(__git_ps1 "\[\e[91m\][%s]")\[\e[39m\]\$ '
 
 if [ -z "$debian_chroot" ] && [ -r /etc/debian_chroot ]; then
