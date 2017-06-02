@@ -1,6 +1,7 @@
 " define plugins
 call plug#begin('~/.vim/plugged')
 Plug 'Valloric/YouCompleteMe'
+Plug 'christoomey/vim-tmux-navigator'
 "Plug 'davidhalter/jedi-vim'
 Plug 'ekalinin/Dockerfile.vim'
 Plug 'fatih/vim-go'
