@@ -52,3 +52,24 @@ set wildignore=*.o,*~,*.pyc     " ignore compiled files
 " YouCompleteMe
 nnoremap <leader>jd :YcmCompleter GoTo<CR>
 let g:ycm_confirm_extra_conf=0
+
+" cscope
+if has("cscope")
+    " add any database in current directory
+    if filereadable("cscope.out")
+        cs add cscope.out
+    " else add database pointed to by environment
+    elseif $CSCOPE_DB != ""
+        cs add $CSCOPE_DB
+    endif
+endif
+
+nmap <leader>cs :cs find s <C-R>=expand("<cword>")<CR><CR>
+nmap <leader>cg :cs find g <C-R>=expand("<cword>")<CR><CR>
+nmap <leader>cc :cs find c <C-R>=expand("<cword>")<CR><CR>
+nmap <leader>ct :cs find t <C-R>=expand("<cword>")<CR><CR>
+nmap <leader>ce :cs find e <C-R>=expand("<cword>")<CR><CR>
+nmap <leader>cf :cs find f <C-R>=expand("<cfile>")<CR><CR>
+nmap <leader>ci :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
+nmap <leader>cd :cs find d <C-R>=expand("<cword>")<CR><CR>
+nmap <leader>ca :cs find a <C-R>=expand("<cword>")<CR><CR>
