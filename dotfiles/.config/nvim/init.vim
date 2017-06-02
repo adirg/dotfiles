@@ -51,3 +51,4 @@ set wildignore=*.o,*~,*.pyc     " ignore compiled files
 
 " YouCompleteMe
 nnoremap <leader>jd :YcmCompleter GoTo<CR>
+let g:ycm_confirm_extra_conf=0
