@@ -61,6 +61,11 @@ let g:deoplete#sources#clang#libclang_path = '/usr/lib/llvm-3.8/lib/libclang.so'
 let g:deoplete#sources#clang#clang_header = '/usr/include/clang/3.8/include/'
 let g:deoplete#sources#clang#clang_complete_database = '.'
 
+" airline
+let g:airline_extensions = []       " disable all extensions
+let g:airline_section_x = ""        " hide file type
+let g:airline_section_y = ""        " hide file encoding
+
 " cscope
 if has("cscope")
     set cst
