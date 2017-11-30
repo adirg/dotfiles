@@ -55,6 +55,9 @@ set rtp+=/home/adir/work/fzf
 nmap <c-p> :Files<cr>
 nmap <c-n> :Buffers<cr>
 
+" ack
+let g:ackprg = "ag --vimgrep"
+
 " deoplete
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#sources#clang#libclang_path = '/usr/lib/llvm-3.8/lib/libclang.so'
