@@ -18,7 +18,6 @@ Plug 'zchee/deoplete-clang'
 call plug#end()
 
 set number          " show line numbers
-set relativenumber
 set laststatus=2    " always show status line
 set background=dark
 colorscheme gruvbox
