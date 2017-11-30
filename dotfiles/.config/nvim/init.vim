@@ -1,6 +1,6 @@
 " define plugins
 call plug#begin('~/.vim/plugged')
-Plug 'Valloric/YouCompleteMe'
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'christoomey/vim-tmux-navigator'
 "Plug 'davidhalter/jedi-vim'
 Plug 'ekalinin/Dockerfile.vim'
@@ -14,6 +14,7 @@ Plug 'skywind3000/asyncrun.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'vim-airline/vim-airline'
+Plug 'zchee/deoplete-clang'
 call plug#end()
 
 set number          " show line numbers
@@ -49,9 +50,11 @@ set noswapfile
 set wildmenu                    " enhanced command-line completion
 set wildignore=*.o,*~,*.pyc     " ignore compiled files
 
-" YouCompleteMe
-nnoremap <leader>jd :YcmCompleter GoTo<CR>
-let g:ycm_confirm_extra_conf=0
+" deoplete
+let g:deoplete#enable_at_startup = 1
+let g:deoplete#sources#clang#libclang_path = '/usr/lib/llvm-3.8/lib/libclang.so'
+let g:deoplete#sources#clang#clang_header = '/usr/include/clang/3.8/include/'
+let g:deoplete#sources#clang#clang_complete_database = '.'
 
 " cscope
 if has("cscope")
