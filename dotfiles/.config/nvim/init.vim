@@ -63,6 +63,7 @@ let g:deoplete#sources#clang#clang_complete_database = '.'
 
 " cscope
 if has("cscope")
+    set cst
     " add any database in current directory
     if filereadable("cscope.out")
         cs add cscope.out
