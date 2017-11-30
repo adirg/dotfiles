@@ -5,7 +5,7 @@ Plug 'christoomey/vim-tmux-navigator'
 "Plug 'davidhalter/jedi-vim'
 Plug 'ekalinin/Dockerfile.vim'
 Plug 'fatih/vim-go'
-Plug 'kien/ctrlp.vim'
+Plug 'junegunn/fzf.vim'
 Plug 'mileszs/ack.vim'
 Plug 'morhetz/gruvbox'
 Plug 'neomake/neomake'
@@ -49,6 +49,11 @@ set noswapfile
 " misc
 set wildmenu                    " enhanced command-line completion
 set wildignore=*.o,*~,*.pyc     " ignore compiled files
+
+" fzf
+set rtp+=/home/adir/work/fzf
+nmap <c-p> :Files<cr>
+nmap <c-n> :Buffers<cr>
 
 " deoplete
 let g:deoplete#enable_at_startup = 1
