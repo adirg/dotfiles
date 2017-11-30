@@ -72,13 +72,3 @@ if has("cscope")
         cs add $CSCOPE_DB
     endif
 endif
-
-nmap <leader>cs :cs find s <C-R>=expand("<cword>")<CR><CR>
-nmap <leader>cg :cs find g <C-R>=expand("<cword>")<CR><CR>
-nmap <leader>cc :cs find c <C-R>=expand("<cword>")<CR><CR>
-nmap <leader>ct :cs find t <C-R>=expand("<cword>")<CR><CR>
-nmap <leader>ce :cs find e <C-R>=expand("<cword>")<CR><CR>
-nmap <leader>cf :cs find f <C-R>=expand("<cfile>")<CR><CR>
-nmap <leader>ci :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
-nmap <leader>cd :cs find d <C-R>=expand("<cword>")<CR><CR>
-nmap <leader>ca :cs find a <C-R>=expand("<cword>")<CR><CR>
