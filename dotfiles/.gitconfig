@@ -27,3 +27,4 @@
 
 [core]
     editor = nvim
+    excludesfile = /home/adir/.gitignore
