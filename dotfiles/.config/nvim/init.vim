@@ -74,7 +74,6 @@ let g:airline_section_y = ""        " hide file encoding
 
 " cscope
 if has("cscope")
-    set cst
     " add any database in current directory
     if filereadable("cscope.out")
         cs add cscope.out
