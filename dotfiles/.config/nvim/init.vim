@@ -7,6 +7,7 @@ Plug 'fatih/vim-go'
 Plug 'godlygeek/tabular'
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/vim-easy-align'
+Plug 'majutsushi/tagbar'
 Plug 'mileszs/ack.vim'
 Plug 'morhetz/gruvbox'
 Plug 'neomake/neomake'
@@ -17,6 +18,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'vim-airline/vim-airline'
 Plug 'zchee/deoplete-clang'
+Plug 'zchee/deoplete-jedi'
 call plug#end()
 
 set number          " show line numbers
