@@ -5,6 +5,7 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'ekalinin/Dockerfile.vim'
 Plug 'fatih/vim-go'
 Plug 'godlygeek/tabular'
+Plug 'junegunn/fzf', {'dir': '~/.fzf', 'do': './install --all'}
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/vim-easy-align'
 Plug 'majutsushi/tagbar'
@@ -54,7 +55,6 @@ set wildmenu                    " enhanced command-line completion
 set wildignore=*.o,*~,*.pyc     " ignore compiled files
 
 " fzf
-set rtp+=/home/adir/work/fzf
 nmap <c-p> :Files<cr>
 nmap <c-n> :Buffers<cr>
 
