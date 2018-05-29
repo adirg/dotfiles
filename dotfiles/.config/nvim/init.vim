@@ -60,8 +60,8 @@ let g:ackprg = "ag --vimgrep"
 
 " deoplete
 let g:deoplete#enable_at_startup = 1
-let g:deoplete#sources#clang#libclang_path = '/usr/lib/llvm-3.8/lib/libclang.so'
-let g:deoplete#sources#clang#clang_header = '/usr/include/clang/3.8/include/'
+let g:deoplete#sources#clang#libclang_path = '/usr/lib/llvm-6.0/lib/libclang.so.1'
+let g:deoplete#sources#clang#clang_header = '/usr/include/clang/6.0/include/'
 let g:deoplete#sources#clang#clang_complete_database = '.'
 
 " airline
