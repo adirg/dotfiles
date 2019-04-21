@@ -1,6 +1,5 @@
 " define plugins
 call plug#begin('~/.vim/plugged')
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'ekalinin/Dockerfile.vim'
 Plug 'fatih/vim-go'
@@ -8,15 +7,13 @@ Plug 'junegunn/fzf', {'dir': '~/.fzf', 'do': './install --all'}
 Plug 'junegunn/fzf.vim'
 Plug 'majutsushi/tagbar'
 Plug 'morhetz/gruvbox'
+Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree'
 Plug 'skywind3000/asyncrun.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'vim-airline/vim-airline'
-Plug 'w0rp/ale'
-Plug 'zchee/deoplete-clang'
-Plug 'zchee/deoplete-jedi'
 call plug#end()
 
 set number          " show line numbers
@@ -59,11 +56,11 @@ nmap <c-n> :Buffers<cr>
 " ack
 let g:ackprg = "ag --vimgrep"
 
-" deoplete
-let g:deoplete#enable_at_startup = 1
-let g:deoplete#sources#clang#libclang_path = '/usr/lib/llvm-6.0/lib/libclang.so.1'
-let g:deoplete#sources#clang#clang_header = '/usr/include/clang/6.0/include/'
-let g:deoplete#sources#clang#clang_complete_database = '.'
+"coc
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
 
 " airline
 let g:airline_extensions = []       " disable all extensions
