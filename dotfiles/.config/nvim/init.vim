@@ -71,12 +71,13 @@ let g:airline_section_x = ""        " hide file type
 let g:airline_section_y = ""        " hide file encoding
 
 " cscope
+set nocsverb
 if has("cscope")
     " add any database in current directory
     if filereadable("cscope.out")
         cs add cscope.out
     " else add database pointed to by environment
-    elseif $CSCOPE_DB != ""
+    elseif $CSCOPE_DB != "" && filereadable($CSCOPE_DB)
         cs add $CSCOPE_DB
     endif
 endif
