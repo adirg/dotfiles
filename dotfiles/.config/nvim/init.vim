@@ -14,6 +14,7 @@ Plug 'skywind3000/asyncrun.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'vim-airline/vim-airline'
+Plug 'vim-scripts/CSApprox'
 call plug#end()
 
 set number          " show line numbers
