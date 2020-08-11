@@ -50,7 +50,7 @@ set wildmenu                    " enhanced command-line completion
 set wildignore=*.o,*~,*.pyc     " ignore compiled files
 
 " fzf
-let $FZF_DEFAULT_COMMAND="ag -g ''"
+let $FZF_DEFAULT_COMMAND="rg --files"
 nmap <c-p> :Files<cr>
 nmap <c-n> :Buffers<cr>
 
