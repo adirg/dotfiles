@@ -54,9 +54,6 @@ let $FZF_DEFAULT_COMMAND="ag -g ''"
 nmap <c-p> :Files<cr>
 nmap <c-n> :Buffers<cr>
 
-" ack
-let g:ackprg = "ag --vimgrep"
-
 "coc
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
