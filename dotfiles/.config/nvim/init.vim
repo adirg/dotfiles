@@ -54,6 +54,9 @@ let $FZF_DEFAULT_COMMAND="rg --files"
 nmap <c-p> :Files<cr>
 nmap <c-n> :Buffers<cr>
 
+"vim-go
+let g:go_def_mapping_enabled = 0    " disable go-to-definition (will be handled by coc)
+
 "coc
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
