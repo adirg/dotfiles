@@ -56,6 +56,7 @@ nmap <c-n> :Buffers<cr>
 
 "vim-go
 let g:go_def_mapping_enabled = 0    " disable go-to-definition (will be handled by coc)
+let g:go_fmt_autosave = 0           " disable format-on-save (not performing well)
 
 "coc
 nmap <silent> gd <Plug>(coc-definition)
