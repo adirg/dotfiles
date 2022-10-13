@@ -13,7 +13,7 @@
 # git config --global alias.last 'log 1 - HEAD'
 
 [user]
-    email = adirgabai@gmail.com
+    email = adir@lightbitslabs.com
     name = Adir Gabai
 [color]
     ui = true

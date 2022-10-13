@@ -7,7 +7,7 @@ Plug 'junegunn/fzf', {'dir': '~/.fzf', 'do': './install --all'}
 Plug 'junegunn/fzf.vim'
 Plug 'majutsushi/tagbar'
 Plug 'morhetz/gruvbox'
-Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree'
 Plug 'skywind3000/asyncrun.vim'
@@ -50,12 +50,13 @@ set wildmenu                    " enhanced command-line completion
 set wildignore=*.o,*~,*.pyc     " ignore compiled files
 
 " fzf
-let $FZF_DEFAULT_COMMAND="ag -g ''"
+let $FZF_DEFAULT_COMMAND="rg --files"
 nmap <c-p> :Files<cr>
 nmap <c-n> :Buffers<cr>
 
-" ack
-let g:ackprg = "ag --vimgrep"
+"vim-go
+let g:go_def_mapping_enabled = 0    " disable go-to-definition (will be handled by coc)
+let g:go_fmt_autosave = 0           " disable format-on-save (not performing well)
 
 "coc
 nmap <silent> gd <Plug>(coc-definition)
