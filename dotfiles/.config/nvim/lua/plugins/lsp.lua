@@ -37,3 +37,24 @@ local on_attach = function(client, bufnr)
         print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
         end, bufopts)
 end
+
+local capabilities = require('cmp_nvim_lsp').default_capabilities()
+local lspcfg = require('lspconfig')
+
+lspcfg.clangd.setup{
+    on_attach = on_attach,
+    capabilities = capabilities,
+}
+
+lspcfg.rust_analyzer.setup{
+    on_attach = on_attach,
+    capabilities = capabilities,
+    settings = {
+        ["rust-analyzer"] = {
+            checkOnSave = {
+                enable = true,
+                command = "clippy"
+            }
+        }
+    }
+}
