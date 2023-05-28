@@ -22,6 +22,10 @@ return require('packer').startup(function(use)
 
     -- Git integration
     use 'tpope/vim-fugitive'
+    use{
+        'lewis6991/gitsigns.nvim',
+        config = function() require('gitsigns').setup() end
+    }
 
     -- Easily delete, change and add surroundings
     use 'tpope/vim-surround'
