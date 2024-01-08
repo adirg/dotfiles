@@ -1,60 +1,91 @@
--- Mappings
--- See `:help vim.diagnostics.*` for documentation on any of the below functions
--- TODO: should this section be moved to `mappings.lua`?
-local opts = { noremap = true, silent = true }
-vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
-vim.keymap.set('n', ']d', vim.diagnostic.goto_prev, opts)
-vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, opts)
-vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, opts)
+local function config()
+    -- Draw a border around lsp windows
+    require('lspconfig.ui.windows').default_options.border = 'single'
 
--- Use an `on_attach` function to only map the following keys after the server attaches to the
--- current buffer.
-local on_attach = function(client, bufnr)
-    -- Enable completion triggered by <C-x><C-o>
-    vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+    -- Use LspAttach autocommand to only map the following keys after the server attaches to the
+    -- current buffer.
+    vim.api.nvim_create_autocmd('LspAttach', {
+        group = vim.api.nvim_create_augroup('UserLspConfig', {}),
+        callback = function(ev)
+            -- Enable completion triggered by <C-x><C-o>
+            vim.bo[ev.buf].omnifunc =  'v:lua.vim.lsp.omnifunc'
 
-    -- Mappings
-    -- See `:help vim.lsp.*` for documentation on any of the below functions
-    local bufopts = { noremap = true, silent = true, buffer = bufnr }
-    vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
-    vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts) -- Also via C-] (jump to tag)
-    vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
-    vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
+            -- Mappings
+            -- See `:help vim.lsp.*` for documentation on any of the below functions
+            local bufopts = { noremap = true, silent = true, buffer = ev.buf }
+            vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
+            vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts) -- Also via C-] (jump to tag)
+            vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
+            vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
 
-    vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
-    vim.keymap.set('n', '<space>k', vim.lsp.buf.signature_help, bufopts)
+            vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
+            vim.keymap.set('n', '<space>k', vim.lsp.buf.signature_help, bufopts)
 
-    -- TODO: replace <space> with <leader>?
-    vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, bufopts)
-    vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, bufopts)
-    vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
-    vim.keymap.set('n', '<space>gq', function() vim.lsp.buf.format{ async = true} end, bufopts)
+            -- TODO: replace <space> with <leader>?
+            vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, bufopts)
+            vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, bufopts)
+            vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
+            vim.keymap.set('n', '<space>gq', function() vim.lsp.buf.format{ async = true} end,
+                bufopts)
+        end,
+    })
 
-    -- TODO: check what these mappings do?!
-    vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, bufopts)
-    vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, bufopts)
-    vim.keymap.set('n', '<space>wl', function()
-        print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-        end, bufopts)
-end
+    local capabilities = require('cmp_nvim_lsp').default_capabilities()
+    local lspcfg = require('lspconfig')
 
-local capabilities = require('cmp_nvim_lsp').default_capabilities()
-local lspcfg = require('lspconfig')
+    lspcfg.clangd.setup({
+        capabilities = capabilities,
+    })
 
-lspcfg.clangd.setup{
-    on_attach = on_attach,
-    capabilities = capabilities,
-}
-
-lspcfg.rust_analyzer.setup{
-    on_attach = on_attach,
-    capabilities = capabilities,
-    settings = {
-        ["rust-analyzer"] = {
-            checkOnSave = {
-                enable = true,
-                command = "clippy"
+    lspcfg.rust_analyzer.setup({
+        capabilities = capabilities,
+        settings = {
+            ["rust-analyzer"] = {
+                checkOnSave = {
+                    enable = true,
+                    command = "clippy"
+                }
             }
         }
-    }
+    })
+
+    lspcfg.lua_ls.setup({
+        capabilities = capabilities,
+        on_init = function(client)
+            local path = client.workspace_folders[1].name
+            if not vim.loop.fs_stat(path..'/.luarc.json') and not
+                vim.loop.fs_stat(path..'/.luarc.jsonc') then
+                client.config.settings = vim.tbl_deep_extend('force', client.config.settings, {
+                    Lua = {
+                        runtime = {
+                            -- Tell the language server which version of Lua you're using
+                            -- (most likely LuaJIT in the case of Neovim)
+                            version = 'LuaJIT'
+                        },
+                        -- Make the server aware of Neovim runtime files
+                        workspace = {
+                            checkThirdParty = false,
+                            library = {
+                                vim.env.VIMRUNTIME
+                            }
+                        }
+                    }
+                })
+
+                client.notify("workspace/didChangeConfiguration", { settings =
+                    client.config.settings })
+            end
+            return true
+        end
+    })
+end
+
+return {
+    'neovim/nvim-lspconfig',
+    dependencies = {
+        -- Needed for default capabilities
+        'hrsh7th/cmp-nvim-lsp',
+    },
+
+    config = config
 }
