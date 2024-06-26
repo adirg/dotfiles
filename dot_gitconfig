@@ -7,6 +7,7 @@
     enabled = true
 [alias]
     logo = log --oneline
+    wip = commit -a -m "wip"
 
 [core]
     editor = nvim
