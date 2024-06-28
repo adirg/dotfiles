@@ -24,7 +24,9 @@ local function config()
             -- TODO: replace <space> with <leader>?
             vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, bufopts)
             vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, bufopts)
-            vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
+            -- TODO: this mapping collides with NERDCommenter (can we drop NERDCommenter when
+            -- upgrading to nvim 0.10?)
+            vim.keymap.set('n', '<space><space>a', vim.lsp.buf.code_action, bufopts)
             vim.keymap.set('n', '<space>gq', function() vim.lsp.buf.format{ async = true} end,
                 bufopts)
         end,
