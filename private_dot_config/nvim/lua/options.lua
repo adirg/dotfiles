@@ -34,3 +34,15 @@ vim.opt.wildignore = '*.o,*~,*.pyc'     -- ignore compiled files
 -- Leader
 vim.keymap.set('n', ' ', '<Nop>', { silent = true, remap = false })
 vim.g.mapleader = ' '   -- map to space
+
+-- Auto Commands
+-- Files loaded from refroot should not be modified, otherwise it can cause huge compilation.
+-- TODO: Do we need to make it more generic and set this option for all files that are outside the
+-- project?
+vim.api.nvim_create_autocmd({"BufReadPost"}, {
+  group = vim.api.nvim_create_augroup("NoModifiable", { clear = true }),
+  pattern = {"*/refroot/*"},
+  callback = function(ev)
+    vim.opt.readonly = true
+  end
+})
