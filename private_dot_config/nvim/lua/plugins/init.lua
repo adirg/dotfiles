@@ -12,7 +12,16 @@ return {
     },
 
     -- Status line
-    'nvim-lualine/lualine.nvim',
+    {
+        'nvim-lualine/lualine.nvim',
+        config = function()
+            require("lualine").setup({
+                options = {
+                    theme = "gruvbox_dark",
+                }
+            })
+        end
+    },
 
     -- Navigate seamlessly between vim and tmux splits
     'christoomey/vim-tmux-navigator',
