@@ -80,6 +80,18 @@ local function config()
             return true
         end
     })
+
+    lspcfg.pylsp.setup({
+        capabilities = capabilities,
+        settings = {
+            pylsp = {
+                plugins = {
+                    black = { enabled = true },
+                    pycodestyle = { enabled = false },
+                },
+            },
+        },
+    })
 end
 
 return {
