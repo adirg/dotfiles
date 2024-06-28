@@ -1,2 +1,5 @@
 [font.normal]
 family = "Source Code Pro"
+
+[window]
+decorations_theme_variant = "Dark"
