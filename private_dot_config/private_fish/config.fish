@@ -2,8 +2,8 @@ set -g fish_greeting
 
 if status is-interactive
     # Commands to run in interactive sessions can go here
-    if test -e /opt/rh/gcc-toolset-10/enable
-        bash /opt/rh/gcc-toolset-10/enable
+    if test -e /opt/rh/gcc-toolset-12/enable
+        bash /opt/rh/gcc-toolset-12/enable
     end
 end
 
