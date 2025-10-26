@@ -1,10 +1,42 @@
+[column]
+    ui = auto
+
+[branch]
+    sort = -commiterdate
+
+[tag]
+    sort = version:refname
+[init]
+    defaultBranch = main
+
+[diff]
+    algorithm = histogram
+    colorMoved = plain
+    mnemonicPrefix = true
+    renames = true
+
+[push]
+    default = simple
+    autoSetupRemote = true
+    followTags = true
+
+[fetch]
+    prune = true
+    pruneTags = true
+    all = true
+
+[help]
+    autocorrect = prompt
+
+[rebase]
+    autoSquash = true
+    autoStash = true
+    autoRefs = true
+
 [user]
     email = adirgabai@gmail.com
     name = Adir Gabai
-[color]
-    ui = true
-[rerere]
-    enabled = true
+
 [alias]
     logo = log --oneline
     wip = commit -a -m "wip"
