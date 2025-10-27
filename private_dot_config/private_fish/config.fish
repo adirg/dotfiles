@@ -24,3 +24,5 @@ end
 if command -q direnv
     direnv hook fish | source
 end
+
+fish_user_key_bindings
