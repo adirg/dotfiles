@@ -4,6 +4,10 @@ local function config()
     vim.opt.completeopt = 'menu,menuone,noselect'
 
     cmp.setup{
+        window = {
+            completion = cmp.config.window.bordered(),
+            documentation = cmp.config.window.bordered(),
+        },
         formatting = {
             format = function(entry, vim_item)
                 vim_item.kind = string.format('%s', vim_item.kind)
