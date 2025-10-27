@@ -1,50 +1,51 @@
 function config()
     local dap = require('dap')
 
-    dap.adapters.cppdbg = {
-        id = 'cppdbg',
+    dap.adapters.gdb = {
         type = 'executable',
-        -- TODO: move it to a better location!
-        command = '/home/adir/Downloads/extension/debugAdapters/bin/OpenDebugAD7',
+        command = 'gdb',
+        args = { '--interpreter=dap', '--eval-comman', 'set print pretty on' },
     }
 
-    dap.configurations.cpp = {
+    local common = {
         {
             name = 'Launch file',
-            type = 'cppdbg',
+            type = 'gdb',
             request = 'launch',
             program = function()
                 return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
             end,
             cwd = '${workspaceFolder}',
-            stopAtEntry = true,
-            setupCommands = {
-                {
-                    text = '--enable-pretty-printing',
-                    description = 'enable pretty printing',
-                    ignoreFailures = false,
-                },
-            },
+            stopAtBeginningOfMainSubprogram = true,
         },
         {
-            name = 'Attach to gdbserver :1234',
-            type = 'cppdbg',
-            MIMode = 'gdb',
-            miDebuggerServerAddress = 'localhost:1234',
-            miDebuggerPath = '/usr/bin/gdb',
-            cwd = '${workdpaceFolder}',
+            name = 'Attach process',
+            type = 'gdb',
+            request = 'attach',
             program = function()
                 return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
             end,
-            setupCommands = {
-                {
-                    text = '--enable-pretty-printing',
-                    description = 'enable prerry printing',
-                    ignoreFailures = false,
-                },
-            },
+            pid = function()
+                return tonumber(vim.fn.input("PID: "))
+            end,
+            cwd = '${workdpaceFolder}',
+        },
+        {
+            name = 'Attach gdbserver',
+            type = 'gdb',
+            request = 'attach',
+            target = function()
+                return vim.fn.input('gdbserver host:port: ', 'localhost:12345')
+            end,
+            program = function()
+                return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+            end,
+            cwd = '${workdpaceFolder}',
         },
     }
+
+    dap.configurations.cpp = common
+    dap.configurations.c = common
 
     vim.keymap.set('n', '<F5>', dap.continue)
     vim.keymap.set('n', '<F6>', dap.step_over)
