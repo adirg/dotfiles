@@ -34,13 +34,12 @@ local function config()
     })
 
     local capabilities = require('cmp_nvim_lsp').default_capabilities()
-    local lspcfg = require('lspconfig')
 
-    lspcfg.clangd.setup({
+    vim.lsp.config('clangd', {
         capabilities = capabilities,
     })
 
-    lspcfg.rust_analyzer.setup({
+    vim.lsp.config('rust_analyzer', {
         capabilities = capabilities,
         settings = {
             ["rust-analyzer"] = {
@@ -52,7 +51,7 @@ local function config()
         }
     })
 
-    lspcfg.lua_ls.setup({
+    vim.lsp.config('lua_ls', {
         capabilities = capabilities,
         settings = {
             Lua = {
@@ -67,7 +66,7 @@ local function config()
         },
     })
 
-    lspcfg.pylsp.setup({
+    vim.lsp.config('pylsp', {
         capabilities = capabilities,
         settings = {
             pylsp = {
