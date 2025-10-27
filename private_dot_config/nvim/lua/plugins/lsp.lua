@@ -15,7 +15,8 @@ local function config()
             local bufopts = { noremap = true, silent = true, buffer = ev.buf }
             vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
             vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts) -- Also via C-] (jump to tag)
-            vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
+            -- We are using Telescope to list LSP references
+            --vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
             vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
 
             vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)

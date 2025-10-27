@@ -35,6 +35,8 @@ local function config()
     vim.keymap.set('n', '<leader> w', telescope_builtin.grep_string, { desc = 'Search current [w]ord' })
     vim.keymap.set('n', '<leader> g', telescope_builtin.live_grep, { desc = 'Search by [g]rep' })
     vim.keymap.set('n', '<leader> d', telescope_builtin.diagnostics, { desc = 'Search [d]iagnostics' })
+
+    vim.keymap.set('n', 'gr', function() telescope_builtin.lsp_references({ show_line = false }) end, { desc = 'Search LSP [r]eferences' })
 end
 
 return {
