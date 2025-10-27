@@ -44,3 +44,6 @@
 [core]
     editor = nvim
     excludesfile = ~/.gitignore
+
+[commit]
+    verbose = true
