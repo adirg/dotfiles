@@ -8,7 +8,7 @@ local function config()
         group = vim.api.nvim_create_augroup('UserLspConfig', {}),
         callback = function(ev)
             -- Enable completion triggered by <C-x><C-o>
-            vim.bo[ev.buf].omnifunc =  'v:lua.vim.lsp.omnifunc'
+            vim.bo[ev.buf].omnifunc = 'v:lua.vim.lsp.omnifunc'
 
             -- Mappings
             -- See `:help vim.lsp.*` for documentation on any of the below functions
@@ -28,7 +28,7 @@ local function config()
             -- TODO: this mapping collides with NERDCommenter (can we drop NERDCommenter when
             -- upgrading to nvim 0.10?)
             vim.keymap.set('n', '<space><space>a', vim.lsp.buf.code_action, bufopts)
-            vim.keymap.set('n', '<space>gq', function() vim.lsp.buf.format{ async = true} end,
+            vim.keymap.set('n', '<space>gq', function() vim.lsp.buf.format { async = true } end,
                 bufopts)
         end,
     })
