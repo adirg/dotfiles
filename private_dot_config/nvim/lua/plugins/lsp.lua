@@ -38,6 +38,7 @@ local function config()
     vim.lsp.config('clangd', {
         capabilities = capabilities,
     })
+    vim.lsp.enable('clangd')
 
     vim.lsp.config('rust_analyzer', {
         capabilities = capabilities,
@@ -50,6 +51,7 @@ local function config()
             }
         }
     })
+    vim.lsp.enable('rust_analyzer')
 
     vim.lsp.config('lua_ls', {
         capabilities = capabilities,
@@ -65,6 +67,7 @@ local function config()
             },
         },
     })
+    vim.lsp.enable('lua_ls')
 
     vim.lsp.config('pylsp', {
         capabilities = capabilities,
@@ -77,6 +80,7 @@ local function config()
             },
         },
     })
+    vim.lsp.enable('pylsp')
 
     local orig_open_floating_preview = vim.lsp.util.open_floating_preview
     function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
